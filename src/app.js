@@ -87,7 +87,7 @@ app.patch("/repositories/:id", (request, response) => {
     (repository) => repository.id === id
   );
   if (repositoryIndex < 0) {
-    return response.status(404).json({ error: "Repository not found" });
+    return response.status(400).json({ error: "Repository not found" });
   }
   repositories[repositoryIndex] = {
     ...repositories[repositoryIndex],
@@ -121,7 +121,7 @@ app.post("/repositories/:id/like", (request, response) => {
     (repository) => repository.id === id
   );
   if (repositoryIndex < 0) {
-    return response.status(404).json({ error: "Repository not found" });
+    return response.status(400).json({ error: "Repository not found" });
   }
   repositories[repositoryIndex].likes += 1;
   return response.status(200).json(repositories[repositoryIndex]);
