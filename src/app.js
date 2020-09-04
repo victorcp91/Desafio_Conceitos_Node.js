@@ -47,21 +47,6 @@ app.put("/repositories/:id", (request, response) => {
   const { title, url, techs } = request.body;
   const { id } = request.params;
 
-  let error = "";
-
-  if (!title) {
-    error += "Required title. ";
-  }
-  if (!url) {
-    error += "Required url. ";
-  }
-  if (!techs || !Array.isArray(techs)) {
-    error += "At technology list is needed";
-  }
-  if (error) {
-    return response.status(400).json({ error });
-  }
-
   const repositoryIndex = repositories.findIndex(
     (repository) => repository.id === id
   );
